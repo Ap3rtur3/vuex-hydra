@@ -1,20 +1,28 @@
-const { log, error } = require('./lib');
+const { log, error, fetchData } = require('./lib');
 
-// Checks DOM for data
-const fetchData = () => {
-
+const defaultOptions = {
+    id: null,
+    name: 'Hydra',
+    ignoreUndefined: true,
 };
 
-const hydrate = (store, data, options) => {
+const hydrate = (store, data, options = {}) => {
+    options = {
+        ...defaultOptions,
+        ...options,
+    };
+
     if (!data) {
-        data = fetchData();
+        const { id, name } = options;
+        data = fetchData({ id, name });
+
         if (!data) {
             error('No data found to hydrate store');
             return;
         }
     }
 
-    // Check namespaced modules
+    // Assign namespaced modules
     const modules = store._modulesNamespaceMap;
     for (const name in modules) {
         const module = modules[name];
@@ -22,25 +30,38 @@ const hydrate = (store, data, options) => {
             continue;
         }
 
-        const moduleState = data.modules[name];
-        for (const prop in module.state) {
-            const propData = moduleState[prop];
+        // Assign every prop
+        const newState = data.modules[name];
+        for (const prop in newState) {
+            // Skip if prop is not defined in original state
+            if (options.ignoreUndefined && !module.state.hasOwnProperty(prop)) {
+                continue;
+            }
+
+            const propData = newState[prop];
             if (propData) {
-                store._modulesNamespaceMap[name].state[prop] = propData;
+                module.state[prop] = propData;
             }
         }
     }
 
-    if (data.root && store._modules.root.state) {
-        for (const prop in store._modules.root.state) {
-            const propData = data.root[prop];
+    // Assign root state
+    const rootModule = store._modules.root;
+    if (data.root && rootModule.state) {
+        const newState = data.root;
+        for (const prop in newState) {
+            if (options.ignoreUndefined && !rootModule.state.hasOwnProperty(prop)) {
+                continue;
+            }
+
+            const propData = newState[prop];
             if (propData) {
-                store._modules.root.state[prop] = propData;
+                rootModule.state[prop] = propData;
             }
         }
     }
 };
 
 module.exports = {
-    hydrate
+    hydrate,
 };
