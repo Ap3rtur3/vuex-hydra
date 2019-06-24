@@ -1,6 +1,6 @@
 # vuex-hydra
 
-This Vuex plugin provides a method to initialize your stores with external data.
+This Vuex plugin provides a method to initialize your store states with external data.
 Store data can be passed directly, read from JSON strings or the window object.
 
 This makes it easy for backends to pass data into vuex stores.
@@ -15,7 +15,8 @@ npm install --save vuex-hydra
 yarn add vuex-hydra
 ```
 
-Import vuex-hydra into your project
+Import vuex-hydra into your project, 
+which makes the `$hydrate` function available in your components
 ```javascript
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -50,10 +51,47 @@ The configuration object can have following properties
 |data|object|{}|Store data|
 |id|string|null|Id of DOM Element containing JSON|
 |name|string|'Hydra'|Property name in window object|
+|ignoreUndefined|boolean|true|Only assigns data to state if respective property is already defined|
+|silent|boolean|false|Prevents console output like logs or errors|
+
+#### Data structure
+
+Vuex-hydra can hydrate the root state and namespaced modules.
+The first level properties of your data object should contain the names of your store modules.
+Root store data is identified by `root`, namespaced modules should have their respective names.
+
+**Example:** Assign data to root state and the state of a namespaced module called `user`.
+
+```json
+{
+  "root": {
+    "foo": "bar"
+  },
+  "user": {
+    "id": 42,
+    "name": "baz"
+  }
+}
+```
 
 ## Examples
 
-### Hydrate with JSON
+#### Hydrate with data
+
+```javascript
+const storeData = {
+    root: { foo: 'bar' }
+};
+
+new Vue({
+    store,
+    created() {
+        this.$hydrate({ data: storeData });
+    }
+});
+```
+
+#### Hydrate with JSON in DOM
 
 ```html
 <body>
@@ -64,15 +102,15 @@ The configuration object can have following properties
 ```
 
 ```javascript
-new Vue({
-    store,
-    created() {
-        this.$hydrate({ id: 'vuex-hydra' });
-    }
-});
+    new Vue({
+        store,
+        created() {
+            this.$hydrate({ id: 'vuex-hydra' });
+        }
+    });
 ```
 
-### Hydrate with script
+#### Hydrate with window object
 
 ```html
 <body>
@@ -109,3 +147,4 @@ Lint and fix files
 yarn run lint
 ```
 
+Create a pull request and submit it 
