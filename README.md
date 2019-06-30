@@ -115,8 +115,7 @@ new Vue({
 ```html
 <body>
     <script>
-        // Place this before vue intialization
-        window.backendData = { root: { foor: 'bar' } }
+        window.backendData = { root: { foo: 'bar' } }
     </script>
 </body>
 ```
@@ -137,7 +136,7 @@ Clone this project and run
 yarn install
 ```
 
-Create tests with Jest and run them with
+Create tests with [Jest](https://jestjs.io/docs/en/getting-started) and run them with
 ```bash
 yarn run test
 ```
@@ -147,4 +146,8 @@ Lint and fix files
 yarn run lint
 ```
 
-Create a pull request and submit it 
+Create a feature branch und submit it as pull request.
+
+**Note:** The local demo server does not work correctly at the moment.
+To test features in a real application, 
+import the build files locally or via private npm registry.
