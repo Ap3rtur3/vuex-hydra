@@ -62,6 +62,26 @@ Root store data is identified by `root`, namespaced modules should have their re
 
 **Example:** Assign data to root state and the state of a namespaced module called `user`.
 
+```javascript
+import Vuex from 'vuex';
+
+const user = {
+    state: {
+        id: null,
+        name: '',
+    },
+};
+
+export default new Vuex.Store({
+    modules: {
+        user,
+    },
+    state: {
+        foo: '',
+    },
+});
+```
+
 ```json
 {
   "root": {
@@ -151,3 +171,12 @@ Create a feature branch und submit it as pull request.
 **Note:** The local demo server does not work correctly at the moment.
 To test features in a real application, 
 import the build files locally or via private npm registry.
+
+#### TODO
+
+* More tests
+* Local demo
+
+## License
+
+MIT
