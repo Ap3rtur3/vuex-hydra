@@ -2,6 +2,7 @@
   "name": "vuex-hydra",
   "version": "0.1.0",
   "license": "MIT",
+  "author": "Marcel Solle <msap3rtur3@gmail.com>",
   "main": "./dist/vuex-hydra.umd.js",
   "types": "./src/index.d.ts",
   "scripts": {
@@ -15,6 +16,7 @@
     "> 1%",
     "last 2 versions"
   ],
+  "repository": "git+https://github.com/Ap3rtur3/vuex-hydra.git",
   "dependencies": {},
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
