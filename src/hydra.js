@@ -2,7 +2,7 @@ const { error, fetchData } = require('./lib');
 
 const defaultOptions = {
     id: null,
-    name: 'Hydra',
+    name: null,
     ignoreUndefined: true,
 };
 

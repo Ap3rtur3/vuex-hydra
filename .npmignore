@@ -1,10 +1,11 @@
-.idea
-demo
+.idea/
+demo/
 dist/demo.html
 node_modules
-public
-src
-tests
+public/
+src/
+!src/index.d.ts
+tests/
 .editorconfig
 .eslintrc.js
 .gitignore

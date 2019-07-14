@@ -50,7 +50,7 @@ The configuration object can have following properties
 |---|---|---|---|
 |data|object|{}|Store data|
 |id|string|null|Id of DOM Element containing JSON|
-|name|string|'Hydra'|Property name in window object|
+|name|string|null|Property name in window object|
 |ignoreUndefined|boolean|true|Only assigns data to state if respective property is already defined|
 |silent|boolean|false|Prevents console output like logs or errors|
 
