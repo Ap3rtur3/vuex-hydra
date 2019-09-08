@@ -1,15 +1,12 @@
 const path = require('path');
 
 module.exports = {
+    outputDir: 'demo_dist',
     configureWebpack: {
-        output: {
-            path: path.join(__dirname, 'dist')
-        },
         resolve: {
             alias: {
                 '@': path.join(__dirname, 'demo', 'components')
             }
         },
-        entry: './src/index.js'
     }
 };
