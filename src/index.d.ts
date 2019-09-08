@@ -1,6 +1,14 @@
 
-export function $hydrate(config?: HydrateInterface): void;
+declare function $hydrate(config?: HydrateInterface): void;
 
+export interface StoreState {
+    [key: string]: any;
+}
+
+export interface HydrateData {
+    root?: StoreState;
+    [moduleName: string]: StoreState;
+}
 export interface HydrateInterface {
     data?: HydrateData;
     id?: string;
@@ -9,11 +17,4 @@ export interface HydrateInterface {
     silent?: boolean;
 }
 
-export interface HydrateData {
-    root?: StoreState;
-    [moduleName: string]: StoreState;
-}
-
-export interface StoreState {
-    [key: string]: any;
-}
+export default $hydrate;

@@ -1,7 +1,7 @@
 let isSilent = false;
 const isTestMode = (process && process.env && process.env.NODE_ENV === 'test');
-const log = (msg) => !isSilent && !isTestMode && console.log(`[vuex-hydra] ${msg}`);
-const error = (msg) => !isSilent && !isTestMode && console.error(`[vuex-hydra] ${msg}`);
+const log = (...args) => !isSilent && !isTestMode && console.log('[vuex-hydra]', ...args);
+const error = (...args) => !isSilent && !isTestMode && console.error('[vuex-hydra]', ...args);
 
 // Searches for data
 const fetchData = ({ id, name }) => {

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import Test from './components/Test.vue';
+    import Test from '@/Test.vue';
 
     export default {
         name: 'app',
@@ -16,5 +16,11 @@
 </script>
 
 <style>
-    
+    #app {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background-color: #fcfdfe;
+    }
 </style>

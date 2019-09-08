@@ -23,7 +23,7 @@ import Vuex from 'vuex';
 import VuexHydra from 'vuex-hydra';
 
 Vue.use(Vuex);
-Vue.use(VuexHydra);
+Vue.use(VuexHydra); // Use after Vuex
 
 const store = Vuex.Store({
     state: {

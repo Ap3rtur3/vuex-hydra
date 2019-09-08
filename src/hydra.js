@@ -1,4 +1,4 @@
-const { error, fetchData } = require('./lib');
+const { log, error, fetchData } = require('./lib');
 
 const defaultOptions = {
     id: null,
@@ -6,7 +6,7 @@ const defaultOptions = {
     ignoreUndefined: true,
 };
 
-const assign = (module, state, options) => {
+const assign = (Vue, module, state, options) => {
     for (const prop in state) {
         // Skip if prop is not defined in original state
         if (options.ignoreUndefined && !module.state.hasOwnProperty(prop)) {
@@ -15,12 +15,12 @@ const assign = (module, state, options) => {
 
         const propData = state[prop];
         if (propData) {
-            module.state[prop] = propData;
+            Vue.set(module.state[prop], propData);
         }
     }
 };
 
-const hydrate = (store, data, options = {}) => {
+const hydrate = (Vue, store, data, options = {}) => {
     options = {
         ...defaultOptions,
         ...options,
@@ -37,6 +37,9 @@ const hydrate = (store, data, options = {}) => {
         }
     }
 
+    
+    log('$hydrate data', data);
+
     // Assign namespaced module state
     const modules = store._modulesNamespaceMap;
     for (const name in modules) {
@@ -46,14 +49,14 @@ const hydrate = (store, data, options = {}) => {
         }
 
         const newState = data.modules[name];
-        assign(module, newState, options);
+        assign(Vue, module, newState, options);
     }
 
     // Assign root state
     const rootModule = store._modules.root;
     if (data.root && rootModule.state) {
         const newState = data.root;
-        assign(rootModule, newState, options);
+        assign(Vue, rootModule, newState, options);
     }
 };
 

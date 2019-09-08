@@ -14,22 +14,16 @@ new Vue({
         // Below are several ways to hydrate the store:
 
         // 1. Inline data
-        const data = {
-            root: { hello: 'world' },
-            test: { source: 'inline' }
-        };
-        this.$events.on('hydrate:inline', () => {
-            this.$hydrate({ data });
+        this.$hydrate({
+            data: {
+                inline: { message: 'Loaded from inline data' },
+            }
         });
 
         // 2. JSON in HTML
-        this.$events.on('hydrate:json', () => {
-            this.$hydrate({ id: 'vuex-hydra' });
-        });
+        this.$hydrate({ id: 'vuex-hydra' });
 
         // 3. Data in window object
-        this.$events.on('hydrate:window', () => {
-            this.$hydrate({ name: 'Hydra' });
-        });
+        this.$hydrate({ name: 'Hydra' });
     },
 }).$mount('#app');

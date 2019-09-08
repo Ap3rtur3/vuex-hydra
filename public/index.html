@@ -9,21 +9,28 @@
 </head>
 <body>
 <style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    
     .hidden {
         display: none;
     }
 </style>
+
 <div id="vuex-hydra" class="hidden">
     {
-    "root": { "hello": "world" },
-    "test": { "source": "JSON" }
+    "json": { "message": "Loaded from JSON in HTML" }
     }
 </div>
 
 <script>
     window.Hydra = {
-        root: { hello: 'world' },
-        test: { source: "window" }
+        window: { message: 'Loaded from data in window object' },
     };
 </script>
 

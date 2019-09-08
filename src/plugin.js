@@ -18,7 +18,7 @@ const Plugin = {
             } = config;
 
             setSilence(silent);
-            hydrate(this.$store, data, {
+            hydrate(Vue, this.$store, data, {
                 id,
                 name,
                 ignoreUndefined,

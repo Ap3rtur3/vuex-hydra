@@ -1,19 +1,19 @@
 <template>
-    <div class="hello">
-        {{ msg }}
+    <div class="test">
+        <div class="group">
+            <div class="message">
+                <div class="header">Inline</div>
+                {{ inlineMessage }}
+            </div>
 
-        <div class="button-group">
-            <div class="button"
-                 @click="$events.emit('hydrate:inline')">
-                Inline
+            <div class="message">
+                <div class="header">JSON</div>
+                {{ jsonMessage }}
             </div>
-            <div class="button"
-                 @click="$events.emit('hydrate:json')">
-                JSON
-            </div>
-            <div class="button"
-                 @click="$events.emit('hydrate:window')">
-                Window
+
+            <div class="message">
+                <div class="header">Window</div>
+                {{ windowMessage }}
             </div>
         </div>
     </div>
@@ -23,19 +23,37 @@
     import { mapGetters } from 'vuex';
 
     export default {
-        name: 'HelloWorld',
+        name: 'Test',
         computed: {
-            ...mapGetters(['hello']),
-            msg() {
-                return `Hello ${this.hello}`;
-            }
+            ...mapGetters([
+                'userInput',
+                'inlineMessage',
+                'jsonMessage',
+                'windowMessage'
+            ]),
         }
     };
 </script>
 
 <style scoped>
-    .button-group {
+    .test {
         display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 50px;
+        min-width: 400px;
+    }
 
+    .group {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .message {
+    }
+
+    .header {
+        font-size: 20px;
     }
 </style>

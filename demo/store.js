@@ -1,29 +1,21 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { Plugin } from '../src/plugin';
+import { Plugin } from '/Users/grafik/projects/vuex-hydra/src/plugin';
 
 Vue.use(Vuex);
 Vue.use(Plugin);
 
-const test = {
-    state: {
-        source: '',
-    },
-    getters: {
-        source: state => state.source,
-    }
-};
-
 export default new Vuex.Store({
-    modules: {
-        test,
-    },
     state: {
-        hello: '',
+        userInput: '',
+        inlineMessage: 'NULL',
+        jsonMessage: 'NULL',
+        windowMessage: 'NULL',
     },
-    mutations: {},
-    actions: {},
     getters: {
-        hello: state => state.hello,
+        userInput: state => state.userInput,
+        inlineMessage: state => state.inlineMessage,
+        jsonMessage: state => state.jsonMessage,
+        windowMessage: state => state.windowMessage,
     }
 });
