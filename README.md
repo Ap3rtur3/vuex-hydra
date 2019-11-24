@@ -1,6 +1,6 @@
-# vuex-hydra
+# Vuex Hydra
 
-**A Vuex plugin to hydrate your stores with external data.**
+> A Vuex plugin to hydrate your stores with external data.
 
 It can be used for decoupled frontends to instantly access backend data without further API requests.
 Store data can be passed directly, read from JSON strings or the window object.
@@ -148,6 +148,38 @@ Separate nested modules names with `/`.
 
 ```javascript
 this.$hydrate({ /* config */ });
+```
+
+## Frameworks
+
+_This section is in progress_
+
+#### Laravel
+
+Collect your data in the controller and pass it to a view
+```php
+public function index()
+{
+    $data = [
+        'root' => [
+            'foo' => Bar::first(),
+        ],
+    ];
+    return view('index', [
+        'data' => $data,
+    ]);
+}
+```
+
+Insert hidden JSON without further encoding
+```html
+<div id="vuex-hydra" style="display: none">
+    {!! json_encode($data) !!}
+</div>
+```
+
+```javascript
+this.$hydrate({ name: 'vuex-hydra' })
 ```
 
 ## Development

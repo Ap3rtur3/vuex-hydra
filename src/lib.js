@@ -20,7 +20,7 @@ const fetchData = ({ id, name }) => {
     }
 
     // Check window object
-    if (name && typeof window[name] === 'object') {
+    if (name && window && typeof window[name] === 'object' && window[name] !== null) {
         return window[name];
     }
 
