@@ -7,8 +7,8 @@
   "types": "./src/index.d.ts",
   "scripts": {
     "serve": "vue-cli-service serve --config vue.config.js ./demo/main.js",
-    "build": "vue-cli-service build --config build.config.js --target lib --name vuex-hydra ./src/index.js",
-    "release": "yarn run build && np",
+    "build": "NODE_ENV=production vue-cli-service build --config build.config.js --target lib --name vuex-hydra ./src/index.js",
+    "release": "npm run build && np",
     "lint": "vue-cli-service lint",
     "test": "vue-cli-service test:unit"
   },

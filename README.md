@@ -2,8 +2,10 @@
 
 **A Vuex plugin to hydrate your Vuex stores with external data.**
 
-It can be used for decoupled frontends to access backend data without further API requests.
+It can be used for decoupled frontends to instantly access backend data without further API requests.
 Store data can be passed directly, read from JSON strings or the window object.
+
+Check the examples below for more information.
 
 ## Setup
 
@@ -52,8 +54,7 @@ The configuration object can have following properties
 |data|object|{}|Store data|
 |id|string|null|Id of DOM Element containing JSON|
 |name|string|null|Property name in window object|
-|ignoreUndefined|boolean|true|Only assigns data to state if respective property is already defined|
-|silent|boolean|false|Prevents console output like logs or errors|
+|silent|boolean|false|Prevents console messages like logs or errors|
 
 #### Data structure
 
@@ -96,7 +97,9 @@ export default new Vuex.Store({
 
 ## Examples
 
-There are multiple ways to hydrate your store
+There are multiple ways to hydrate your store.
+If the data is provided by a backend, the best way is to
+hydrate your stores with JSON in HTML.
 
 #### Hydrate with data
 
@@ -113,7 +116,9 @@ new Vue({
 });
 ```
 
-#### Hydrate with JSON in DOM
+#### Hydrate with JSON in HTML
+
+Serialize your data to JSON, place it in a DOM Element and hydrate via id
 
 ```html
 <body>
@@ -156,6 +161,11 @@ new Vue({
 Clone this project and run 
 ```bash
 npm install
+```
+
+Start local dev server from application in `demo/`
+```bash
+npm run serve
 ```
 
 Create tests with [Jest](https://jestjs.io/docs/en/getting-started) and run them with

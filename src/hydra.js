@@ -7,7 +7,6 @@ const ROOT_MODULE_NAME = 'root';
 const defaultOptions = {
     id: null,
     name: null,
-    ignoreUndefined: true,
 };
 
 /**
