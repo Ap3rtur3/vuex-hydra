@@ -1,4 +1,4 @@
-const { log, error, fetchData } = require('./lib');
+const { error, fetchData } = require('./lib');
 
 // Module constants
 const ROOT_MODULE_NAME = 'root';

@@ -1,13 +1,13 @@
 {
   "name": "vuex-hydra",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "license": "MIT",
   "author": "Marcel Solle <msap3rtur3@gmail.com>",
   "main": "./dist/vuex-hydra.umd.js",
   "types": "./src/index.d.ts",
   "scripts": {
     "serve": "vue-cli-service serve --config vue.config.js ./demo/main.js",
-    "build": "NODE_ENV=production vue-cli-service build --config build.config.js --target lib --name vuex-hydra ./src/index.js",
+    "build": "vue-cli-service build --target lib --name vuex-hydra --dest dist ./src/index.js",
     "release": "npm run build && np",
     "lint": "vue-cli-service lint",
     "test": "vue-cli-service test:unit"
