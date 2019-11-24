@@ -1,25 +1,71 @@
 const { log, error, fetchData } = require('./lib');
 
+// Module constants
+const ROOT_MODULE_NAME = 'root';
+
+// Hydrate defaults
 const defaultOptions = {
     id: null,
     name: null,
     ignoreUndefined: true,
 };
 
-const assign = (Vue, module, state, options) => {
-    for (const prop in state) {
-        // Skip if prop is not defined in original state
-        if (options.ignoreUndefined && !module.state.hasOwnProperty(prop)) {
-            continue;
+/**
+ * Iterate over given modules merges their states with rootState
+ * @param rootState Vuex store root state
+ * @param data Module states
+ * @returns {{}}
+ */
+const mergeStateWithData = (rootState, data) => Object.keys(data)
+    .reduce((newState, moduleName) => {
+        const moduleState = data[moduleName];
+        if (moduleName === ROOT_MODULE_NAME) {
+            // Merge with root state
+            newState = {
+                ...rootState,
+                ...moduleState,
+            };
+        } else {
+            // Merge module
+            mergeNestedModules(newState, moduleName.split('/'), moduleState);
         }
+        return newState;
+    }, {});
 
-        const propData = state[prop];
-        if (propData) {
-            Vue.set(module.state[prop], propData);
-        }
-    }
+/**
+ * Follows path of module names, creates objects in state if they do not exist and assigns module state
+ * @param rootState State to assign nested module state
+ * @param path Array of property names (Module names)
+ * @param state Module state
+ * @returns {*} Merged state
+ */
+const mergeNestedModules = (rootState, path, state) => {
+    const lastProp = path[path.length - 1];
+    return path
+        .reduce((pointer, prop) => {
+            // Make sure path exists
+            if (!pointer.hasOwnProperty(prop)) {
+                pointer[prop] = {};
+            }
+            // Assign state
+            if (prop === lastProp) {
+                pointer[prop] = {
+                    ...pointer[prop],
+                    ...state,
+                };
+            }
+            // Follow path
+            return pointer[prop];
+        }, rootState);
 };
 
+/**
+ * Searches for data and assigns it to its stores
+ * @param Vue
+ * @param store
+ * @param data
+ * @param options
+ */
 const hydrate = (Vue, store, data, options = {}) => {
     options = {
         ...defaultOptions,
@@ -37,27 +83,9 @@ const hydrate = (Vue, store, data, options = {}) => {
         }
     }
 
-    
-    log('$hydrate data', data);
-
-    // Assign namespaced module state
-    const modules = store._modulesNamespaceMap;
-    for (const name in modules) {
-        const module = modules[name];
-        if (!module.state || !data[name]) {
-            continue;
-        }
-
-        const newState = data.modules[name];
-        assign(Vue, module, newState, options);
-    }
-
-    // Assign root state
-    const rootModule = store._modules.root;
-    if (data.root && rootModule.state) {
-        const newState = data.root;
-        assign(Vue, rootModule, newState, options);
-    }
+    // Hydrate store with merged state
+    const newState = mergeStateWithData(store.state, data);
+    store.replaceState(newState);
 };
 
 module.exports = {

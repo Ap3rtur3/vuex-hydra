@@ -1,9 +1,6 @@
 import Vue from 'vue';
 import App from './components/App.vue';
 import store from './store';
-import VueEventRegistry from 'vue-event-registry';
-
-Vue.use(VueEventRegistry);
 
 Vue.config.productionTip = false;
 
@@ -16,7 +13,18 @@ new Vue({
         // 1. Inline data
         this.$hydrate({
             data: {
-                inline: { message: 'Loaded from inline data' },
+                // Root state
+                root: {
+                    inlineMessage: 'Loaded from inline data',
+                },
+                // Namespaced module state
+                namespacedModule: {
+                    namespacedMessage: 'Loaded from namespaced module'
+                },
+                // Nested namespaced module state
+                'namespacedModule/nestedModule': {
+                    nestedMessage: 'Loaded from nested module'
+                }
             }
         });
 

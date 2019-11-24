@@ -13,7 +13,7 @@ const createStoreGetters = (state) =>
             return getters;
         }, {});
 
-// Creates store and view model
+// Creates store and vue instance
 const setupStore = (state = {}, modules = {}) => {
     const getters = createStoreGetters(state);
     const config = { state, getters };
@@ -57,7 +57,7 @@ describe('Hydra', () => {
         const data = { space: { test: hello } };
         setupStore({}, { space: { test } });
         vm.$hydrate({ data });
-        expect(vm.$store.getters['space/test']).toEqual(test);
+        expect(vm.$store.getters['space/test']).toEqual(hello);
     });
 
     it('hydrates with dom data', () => {
@@ -75,15 +75,5 @@ describe('Hydra', () => {
         setupStore({ test: '' });
         vm.$hydrate({ name: 'test' });
         expect(vm.$store.getters.test).toEqual(test);
-    });
-
-    it('ignores data properly', () => {
-        const overwrite = 'test1';
-        const ignore = 'test2';
-        const data = { root: { overwrite, ignore } };
-        setupStore({ overwrite: '' });
-        vm.$hydrate({ data, ignoreUndefined: true });
-        expect(vm.$store.getters.overwrite).toEqual(overwrite);
-        expect(vm.$store._modules.root.state.ignore).toBeUndefined();
     });
 });

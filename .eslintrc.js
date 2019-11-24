@@ -10,7 +10,7 @@ module.exports = {
     rules: {
         'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-        'indent': ['warn', 4],
+        'indent': 'off',
         'semi': ['warn', 'always'],
         'space-before-function-paren': 'off',
         'comma-dangle': 'off',

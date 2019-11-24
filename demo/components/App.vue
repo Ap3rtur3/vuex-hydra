@@ -1,16 +1,16 @@
 <template>
     <div id="app">
-        <test></test>
+        <tests></tests>
     </div>
 </template>
 
 <script>
-    import Test from '@/Test.vue';
+    import Tests from '@/Tests.vue';
 
     export default {
         name: 'app',
         components: {
-            Test,
+            Tests,
         },
     };
 </script>
@@ -18,6 +18,7 @@
 <style>
     #app {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         width: 100%;
         height: 100%;
