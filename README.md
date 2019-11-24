@@ -44,18 +44,6 @@ new Vue({
 
 ## Usage
 
-#### $hydrate([config])
-
-
-The configuration object can have following properties
-
-|Config|Type|Default|Description|
-|---|---|---|---|
-|data|object|{}|Store data|
-|id|string|null|Id of DOM Element containing JSON|
-|name|string|null|Property name in window object|
-|silent|boolean|false|Prevents console messages like logs or errors|
-
 #### Data structure
 
 Vuex-hydra can hydrate the root state and namespaced modules.
@@ -83,6 +71,7 @@ export default new Vuex.Store({
 });
 ```
 
+This data structure defines store names and their states
 ```json
 {
   "root": {
@@ -95,26 +84,22 @@ export default new Vuex.Store({
 }
 ```
 
+#### $hydrate([config])
+
+The configuration object can have following properties
+
+|Config|Type|Default|Description|
+|---|---|---|---|
+|data|object|{}|Store data|
+|id|string|null|Id of DOM Element containing JSON|
+|name|string|null|Property name in window object|
+|silent|boolean|false|Prevents console messages like logs or errors|
+
 ## Examples
 
 There are multiple ways to hydrate your store.
 If the data is provided by a backend, the best way is to
 hydrate your stores with JSON in HTML.
-
-#### Hydrate with data
-
-```javascript
-const storeData = {
-    root: { foo: 'bar' }
-};
-
-new Vue({
-    store,
-    created() {
-        this.$hydrate({ data: storeData });
-    }
-});
-```
 
 #### Hydrate with JSON in HTML
 
@@ -129,15 +114,12 @@ Serialize your data to JSON, place it in a DOM Element and hydrate via id
 ```
 
 ```javascript
-    new Vue({
-        store,
-        created() {
-            this.$hydrate({ id: 'vuex-hydra' });
-        }
-    });
+this.$hydrate({ id: 'vuex-hydra' });
 ```
 
 #### Hydrate with window object
+
+Extend the window object with your data before application initialization
 
 ```html
 <body>
@@ -148,12 +130,24 @@ Serialize your data to JSON, place it in a DOM Element and hydrate via id
 ```
 
 ```javascript
-new Vue({
-    store,
-    created() {
-        this.$hydrate({ name: 'backendData' });
-    }
-});
+this.$hydrate({ name: 'backendData' });
+```
+
+#### Hydrate namespaced and nested modules
+
+Use the name your namespaced modules are registered with insted of `root`.
+Separate nested modules names with `/`.
+
+```json
+{
+    "namespacedModuleName": { "foo": "bar" },
+    "nested/moduleName": { "bar": "baz" },
+    "really/nested/moduleName": { "baz": "qux" }
+}
+```
+
+```javascript
+this.$hydrate({ data });
 ```
 
 ## Development
