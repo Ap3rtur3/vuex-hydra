@@ -17,7 +17,9 @@
     "last 2 versions"
   ],
   "repository": "git+https://github.com/Ap3rtur3/vuex-hydra.git",
-  "dependencies": {},
+  "dependencies": {
+    "lodash.merge": "^4.6.2"
+  },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.8.0",

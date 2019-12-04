@@ -76,4 +76,40 @@ describe('Hydra', () => {
         vm.$hydrate({ name: 'test' });
         expect(vm.$store.getters.test).toEqual(test);
     });
+
+    it('merges data with root state', () => {
+        const test1 = 'test1';
+        const test2 = 'test2';
+        const rootState = { test1 };
+        const data = { root: { test2 } };
+        setupStore(rootState);
+        vm.$hydrate({ data });
+        expect(vm.$store.state.test1).toEqual(test1);
+        expect(vm.$store.state.test2).toEqual(test2);
+    });
+
+    it('merges data with module state', () => {
+        const test1 = 'test1';
+        const test2 = 'test2';
+        const test3 = 'test3';
+        const rootState = { test1 };
+        const moduleState = { test2, test3: null };
+        const data = { module: { test3 } };
+        setupStore(rootState, { module: moduleState });
+        vm.$hydrate({ data });
+        expect(vm.$store.state.test1).toEqual(test1);
+        expect(vm.$store.state.module.test2).toEqual(test2);
+        expect(vm.$store.state.module.test3).toEqual(test3);
+    });
+
+    it('merges nested module state', () => {
+        const test1 = 'test1';
+        const test2 = 'test2';
+        const moduleState = { test1 };
+        const data = { 'nested/module': { test2 } };
+        setupStore({}, { nested: { module: moduleState } });
+        vm.$hydrate({ data });
+        expect(vm.$store.state.nested.module.test1).toEqual(test1);
+        expect(vm.$store.state.nested.module.test2).toEqual(test2);
+    });
 });

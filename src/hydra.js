@@ -1,61 +1,9 @@
-const { error, fetchData } = require('./lib');
-
-// Module constants
-const ROOT_MODULE_NAME = 'root';
+const { error, fetchData, mergeStateWithData } = require('./lib');
 
 // Hydrate defaults
 const defaultOptions = {
     id: null,
     name: null,
-};
-
-/**
- * Iterate over given modules merges their states with rootState
- * @param rootState Vuex store root state
- * @param data Module states
- * @returns {{}}
- */
-const mergeStateWithData = (rootState, data) => Object.keys(data)
-    .reduce((newState, moduleName) => {
-        const moduleState = data[moduleName];
-        if (moduleName === ROOT_MODULE_NAME) {
-            // Merge with root state
-            newState = {
-                ...rootState,
-                ...moduleState,
-            };
-        } else {
-            // Merge module
-            mergeNestedModules(newState, moduleName.split('/'), moduleState);
-        }
-        return newState;
-    }, {});
-
-/**
- * Follows path of module names, creates objects in state if they do not exist and assigns module state
- * @param rootState State to assign nested module state
- * @param path Array of property names (Module names)
- * @param state Module state
- * @returns {*} Merged state
- */
-const mergeNestedModules = (rootState, path, state) => {
-    const lastProp = path[path.length - 1];
-    return path
-        .reduce((pointer, prop) => {
-            // Make sure path exists
-            if (!pointer.hasOwnProperty(prop)) {
-                pointer[prop] = {};
-            }
-            // Assign state
-            if (prop === lastProp) {
-                pointer[prop] = {
-                    ...pointer[prop],
-                    ...state,
-                };
-            }
-            // Follow path
-            return pointer[prop];
-        }, rootState);
 };
 
 /**
