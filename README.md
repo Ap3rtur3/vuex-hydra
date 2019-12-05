@@ -2,6 +2,9 @@
 
 > A Vuex plugin to hydrate your stores with external data.
 
+[![NPM](https://img.shields.io/npm/v/vuex-hydra)](https://www.npmjs.com/package/vuex-hydra)
+[![MinZip](https://img.shields.io/bundlephobia/min/vuex-hydra)](https://bundlephobia.com/result?p=vuex-hydra)
+
 It can be used for decoupled frontends to instantly access backend data without further API requests.
 Store data can be passed directly, read from JSON strings or the window object.
 
