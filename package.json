@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "license": "MIT",
   "author": "Marcel Solle <msap3rtur3@gmail.com>",
-  "main": "./dist/vuex-hydra.umd.js",
+  "main": "./dist/vuex-hydra.umd.min.js",
   "types": "./src/index.d.ts",
   "scripts": {
     "serve": "vue-cli-service serve --config vue.config.js ./demo/main.js",
@@ -17,6 +17,12 @@
     "last 2 versions"
   ],
   "repository": "git+https://github.com/Ap3rtur3/vuex-hydra.git",
+  "keywords": [
+    "vuex",
+    "store",
+    "hydration",
+    "decoupled"
+  ],
   "dependencies": {
     "lodash.merge": "^4.6.2"
   },

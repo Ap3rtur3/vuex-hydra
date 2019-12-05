@@ -1,16 +1,28 @@
+# Build
 demo
 demo_dist
 dist/demo.html
+dist/vuex-hydra.common.js
+dist/vuex-hydra.common.js.map
+dist/vuex-hydra.umd.js
+dist/vuex-hydra.umd.js.map
+dist/vuex-hydra.umd.min.js.map
 node_modules
 public
-#src
-#!src/index.d.ts
+
+# Source
+src
+!src/index.d.ts
 tests
+
+#Config
 .editorconfig
 .eslintrc.js
 .gitignore
 babel.config.js
 jest.config.js
 vue.config.js
+
+# Other
 .idea
-**/.DS_Store
+.DS_Store
