@@ -1,4 +1,4 @@
-import merge from 'lodash.merge';
+import merge from 'deepmerge';
 
 let isSilent = false;
 const isTestMode = (process && process.env && process.env.NODE_ENV === 'test');
@@ -39,8 +39,7 @@ const fetchData = ({ id, name }) => {
  * @returns {{}}
  */
 const mergeStateWithData = (rootState, data) => {
-    const newState = {};
-    merge(newState, rootState);
+    const newState = merge({}, rootState);
     return Object.keys(data)
         .reduce((newState, moduleName) => {
             if (!data.hasOwnProperty(moduleName)) {
@@ -50,12 +49,12 @@ const mergeStateWithData = (rootState, data) => {
             const moduleState = data[moduleName];
             if (moduleName === ROOT_MODULE_NAME) {
                 // Merge with root state
-                merge(newState, moduleState);
+                newState = merge(newState, moduleState);
             } else {
                 // Build nested module state and merge with new state
                 const moduleParts = moduleName.split('/').reverse();
                 const moduleObj = moduleParts.reduce((obj, name) => ({ [name]: obj }), moduleState);
-                merge(newState, moduleObj);
+                newState = merge(newState, moduleObj);
             }
             return newState;
         }, newState);

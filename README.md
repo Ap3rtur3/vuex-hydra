@@ -155,7 +155,7 @@ this.$hydrate({ /* config */ });
 
 ## Frameworks
 
-_This section is in progress_
+_This section is in progress..._
 
 #### Laravel
 
