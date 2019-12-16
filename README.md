@@ -8,12 +8,14 @@
 It can be used for frontends to instantly access backend data without further API requests.
 Store data can be passed directly, read from JSON strings or the window object.
 
-Check the examples below for more information.
+**Check the examples below for more information.**
 
 #### Use cases
 * Pass dynamic/runtime data from backends into Vuex stores
 * Prevent redundant API requests
 * Speed up store initialization
+
+![UseCase](https://user-images.githubusercontent.com/15201748/70932532-3d7cc300-203a-11ea-8181-741af4b983e6.png)
 
 ## Setup
 
