@@ -1,11 +1,11 @@
 # Vuex Hydra
 
-> A Vuex plugin to hydrate your stores with external data.
+> Vuex plugin to hydrate your stores with external data.
 
 [![NPM](https://img.shields.io/npm/v/vuex-hydra)](https://www.npmjs.com/package/vuex-hydra)
 [![MinZip](https://img.shields.io/bundlephobia/min/vuex-hydra)](https://bundlephobia.com/result?p=vuex-hydra)
 
-It can be used for decoupled frontends to instantly access backend data without further API requests.
+It can be used for frontends to instantly access backend data without further API requests.
 Store data can be passed directly, read from JSON strings or the window object.
 
 Check the examples below for more information.
@@ -21,7 +21,7 @@ yarn add vuex-hydra
 ```
 
 Import vuex-hydra into your project, 
-which makes the `$hydrate` function available in your components
+which makes the `$hydrate` function available in all components
 ```javascript
 import Vue from 'vue';
 import Vuex from 'vuex';

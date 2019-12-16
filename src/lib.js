@@ -1,4 +1,4 @@
-import merge from 'deepmerge';
+const merge = require('deepmerge');
 
 let isSilent = false;
 const isTestMode = (process && process.env && process.env.NODE_ENV === 'test');
