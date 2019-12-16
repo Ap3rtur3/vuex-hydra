@@ -10,6 +10,11 @@ Store data can be passed directly, read from JSON strings or the window object.
 
 Check the examples below for more information.
 
+#### Use cases
+* Pass dynamic/runtime data from backends into Vuex stores
+* Prevent redundant API requests
+* Speed up store initialization
+
 ## Setup
 
 Install the plugin with `npm` or `yarn`
