@@ -6,9 +6,9 @@
 [![MinZip](https://img.shields.io/bundlephobia/min/vuex-hydra)](https://bundlephobia.com/result?p=vuex-hydra)
 
 It can be used for frontends to instantly access backend data without further API requests.
-Store data can be passed directly, read from JSON strings or the window object.
+Store data can be passed **directly**, read from **JSON in HTML** or the **window object**.
 
-**Check the examples below for more information.**
+_**Check the examples below for more information.**_
 
 #### Use cases
 * Pass dynamic/runtime data from backends into Vuex stores
@@ -46,6 +46,8 @@ const store = Vuex.Store({
 new Vue({
     store,
     created() {
+        // This is the simplest case for static data
+        // Check the examples below for dynamic backend data not available at compile time
         const data = { root: { hello: 'world' } }
         this.$hydrate({ data });
     }
