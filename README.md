@@ -185,13 +185,13 @@ public function index()
 
 Insert hidden JSON without further encoding
 ```html
-<div id="vuex-hydra" style="display: none">
+<div id="my-data" style="display: none">
     {!! json_encode($data) !!}
 </div>
 ```
 
 ```javascript
-this.$hydrate({ name: 'vuex-hydra' })
+this.$hydrate({ id: 'my-data' })
 ```
 
 ## Development
