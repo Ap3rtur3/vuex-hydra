@@ -1,6 +1,6 @@
 {
   "name": "vuex-hydra",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "license": "MIT",
   "author": "Marcel Solle <msap3rtur3@gmail.com>",
   "main": "./dist/vuex-hydra.umd.min.js",
