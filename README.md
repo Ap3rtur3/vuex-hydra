@@ -216,7 +216,7 @@ Lint and fix files
 npm run lint
 ```
 
-Create a feature branch und submit it as pull request.
+Create a feature branch on develop und submit it as pull request.
 
 ## License
 
