@@ -14,7 +14,7 @@
             <Test :data="windowMessage">
                 Window
             </Test>
-            
+
             <Test :data="namespacedMessage">
                 Namespaced module
             </Test>
