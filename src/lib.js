@@ -42,10 +42,6 @@ const mergeStateWithData = (rootState, data) => {
     const newState = merge({}, rootState);
     return Object.keys(data)
         .reduce((newState, moduleName) => {
-            if (!data.hasOwnProperty(moduleName)) {
-                return newState;
-            }
-
             const moduleState = data[moduleName];
             if (moduleName === ROOT_MODULE_NAME) {
                 // Merge with root state
